@@ -1,0 +1,31 @@
+
+<html>
+    <head>
+        <title>aurora</title>
+        <style type="text/css">
+        <!--
+        #links,#main{margin-left:auto;margin-right:auto}*{margin:0;text-align:center;text-decoration:none}body{min-width:700px;color:#FFF;background-color:#131313}img[class=frame]{width:188px;height:291px;border:10px groove grey;display:inline-block;margin-left:10px;margin-right:10px}#main{margin-top:50px;border:1px solid silver;background-color:#222}#links{margin-top:20px;width:900px}#links img{height:128px;width:128px;padding:0 50px}h2{font-size:48pt;padding-top:20px;font-family:calibri}
+        -->
+        </style>
+    </head>
+    <body>
+        <div id='main'>
+            {% for imageurl in imageurls %}
+            <img class='frame' src='{{ imageurl }}'>
+            {% else %}
+                Unbelievable.  No entries here so far
+            {% endfor %}
+        </div>
+        <div id="links">
+            <a href='http://localhost:3000'><img src='http://i.imgur.com/XtnAd5g.png'></a><br>
+            <a href='http://localhost:5050'><img src='http://i.imgur.com/0ncZ0f6.png'></a>
+            <a href='http://localhost:8989'><img src='http://i.imgur.com/Ei9pt1Q.png'></a><br>
+            <a href='http://localhost:8181/home'><img src='http://i.imgur.com/QuUCPrO.png'></a>
+			<a href='http://localhost:38080'><img src='http://i.imgur.com/Ga6jQvI.png'></a>
+            <img src='http://i.imgur.com/WLgCwPX.jpg'>
+        </div>
+ 
+        <h2>\\aurora</h2>
+       
+    </body>
+</html>
