@@ -1,6 +1,6 @@
 # plexLanding
 A landing page for plex server using flask templating
-[![Recently added posters](screens/landingpage.png)]
+![Recently added posters](screens/landingpage.png)
 
 ## Features
 * Auto-Updating recently added posters (lazy load)
