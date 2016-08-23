@@ -2,14 +2,9 @@ import requests, json, time
 from flask import Flask, render_template, g
 app = Flask(__name__)
 
-#testtext = '{"response": {"message": null, "data": {"recently_added": [{"library_name": "", "thumb": "/library/metadata/8350/thumb/1468809683", "media_index": "", "title": "Hardcore Henry", "grandparent_thumb": "", "year": "2016", "section_id": "1", "added_at": "1468809667", "parent_rating_key": "", "parent_title": "", "grandparent_title": "", "media_type": "movie", "parent_media_index": "", "grandparent_rating_key": "", "rating_key": "8350", "parent_thumb": ""}, {"library_name": "", "thumb": "/library/metadata/8290/thumb/1468659851", "media_index": "", "title": "Frequently Asked Questions About Time Travel", "grandparent_thumb": "", "year": "2009", "section_id": "1", "added_at": "1468509079", "parent_rating_key": "", "parent_title": "", "grandparent_title": "", "media_type": "movie", "parent_media_index": "", "grandparent_rating_key": "", "rating_key": "8290", "parent_thumb": ""}, {"library_name": "", "thumb": "/library/metadata/8273/thumb/1468004988", "media_index": "", "title": "Star Trek", "grandparent_thumb": "", "year": "2009", "section_id": "1", "added_at": "1468004354", "parent_rating_key": "", "parent_title": "", "grandparent_title": "", "media_type": "movie", "parent_media_index": "", "grandparent_rating_key": "", "rating_key": "8273", "parent_thumb": ""}]}, "result": "success"}}'
-#baseimgurl = 'http://matteracraft.com:8181/pms_image_proxy?img='
-#endimgurl = '&width=300&height=450&fallback=poster'
-
 defaultPosterUrl = "https://raw.githubusercontent.com/drzoidberg33/plexpy/master/data/interfaces/default/images/poster.png"
 
 requestUrlTemplate = "{0}:{1}/api/v2?apikey={2}&cmd=get_recently_added&count={3}&section_id={4}"
-pmsImageUrlTemplate = "{0}:{1}/pms_image_proxy?img={2}&width=300&height=450&fallback=poster"
 notificationRequestUrlTemplate = "{0}:{1}/api/v2?apikey={2}&cmd=get_notification_log&start=0&length={3}&search={4}"
 theurls = []
 
@@ -50,7 +45,6 @@ def assignConfig(rawConfigSettings):
 def populateUrls():
 	del theurls[:]
 	constructedRequestUrl = requestUrlTemplate.format(plexpyServerBaseUrl, plexpyPort, plexpyApiKey, requestEntryNumber, requestSectionId)
-	#r = requests.get('http://matteracraft.com:8181/api/v2?apikey=3efba0ff95efeb2c80227a0d247e9ef3&cmd=get_recently_added&count=3&section_id=1')
 	r = requests.get(constructedRequestUrl)
 	myjson = r.json()
 	entries = myjson['response']['data']['recently_added']
@@ -63,8 +57,6 @@ def populateUrls():
 			if notificationEntry['poster_url'] != '':
 				myurl = notificationEntry['poster_url']
 				break
-		#myurl = pmsImageUrlTemplate.format(plexpyServerBaseUrl, plexpyPort, entry['thumb'])
-	 	#myurl = baseimgurl + entry['thumb'] + endimgurl
 	 	if myurl != '' and myurl is not None:
 			theurls.append(myurl)
 
